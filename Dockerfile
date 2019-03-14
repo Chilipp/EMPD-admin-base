@@ -21,7 +21,7 @@ RUN conda create -y -p ./wc xarray dask rasterio netCDF4 pip
 
 # Download and process WorldClim
 RUN ./wc/bin/pip install latlon-utils
-RUN ./wc/bin/python -m latlon_utils.download -v tavg prec -lat 0 90
+RUN ./wc/bin/python -m latlon_utils.download -v tavg prec -lat 0 90 -res 5m
 
 # Remove the conda environment
 RUN conda env remove -y -p ./wc
