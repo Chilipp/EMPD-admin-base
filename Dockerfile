@@ -10,8 +10,6 @@ ENV LATLONRES 5m
 # ADD ./webapp /opt/webapp/
 # WORKDIR /opt/webapp
 
-ADD ./utils /opt/empd-utils/
-
 RUN conda update -y conda
 
 # Install dependencies
