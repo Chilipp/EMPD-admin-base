@@ -13,7 +13,7 @@ ENV LATLONRES 5m
 RUN conda update -y conda
 
 # Install dependencies
-RUN conda install --yes pandas sqlalchemy psycopg2 shapely netcdf4
+RUN conda install --yes pytest pandas sqlalchemy psycopg2 shapely netcdf4
 RUN pip install latlon-utils
 
 # Install the dependencies to download WorldClim into a separate environment
