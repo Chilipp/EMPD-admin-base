@@ -20,9 +20,7 @@ RUN pip install latlon-utils
 RUN conda create -y -p ./wc xarray dask rasterio netCDF4 pip && \
     ./wc/bin/pip install latlon-utils && \
     ./wc/bin/python -m latlon_utils.download -v tavg prec -lat 0 90 -res 5m && \
-    conda env remove -y -p ./wc
-
-# Remove unnecessary packages
-RUN conda clean --yes --all
+    conda env remove -y -p ./wc && \
+    conda clean --yes --all
 
 CMD [ "/bin/bash" ]
