@@ -2,6 +2,7 @@ FROM continuumio/miniconda3
 
 ENV LATLONDATA /opt/latlon-utils-data
 ENV LATLONRES 5m
+ENV PYTEST /opt/test-env/bin/pytest
 
 # Grab requirements.txt.
 # ADD ./webapp/requirements.txt /tmp/requirements.txt
@@ -13,8 +14,9 @@ ENV LATLONRES 5m
 RUN conda update -y conda
 
 # Install dependencies
-RUN conda install --yes pytest pandas sqlalchemy psycopg2 shapely netcdf4
-RUN pip install latlon-utils
+RUN conda create --yes -p /opt/test-env pytest pandas sqlalchemy psycopg2 shapely netcdf4 && \
+    pip install latlon-utils && \
+    conda clean --yes --all
 
 # Install the dependencies to download WorldClim into a separate environment
 RUN conda create -y -p ./wc xarray dask rasterio netCDF4 pip && \
