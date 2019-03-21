@@ -4,7 +4,7 @@ ENV LATLONDATA /opt/latlon-utils-data
 ENV LATLONRES 5m
 ENV PYTEST /opt/test-env/bin/pytest
 ENV PATH /opt/conda/bin:$PATH
-ENV DATABASE_URL postgresql://postgres@localhost/
+ENV DATABASE_URL postgresql://postgres@localhost
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
