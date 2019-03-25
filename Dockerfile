@@ -21,7 +21,7 @@ RUN wget --quiet https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86
     conda init bash
 
 # Install dependencies
-RUN conda create --yes -p /opt/test-env pytest pandas sqlalchemy psycopg2 shapely netcdf4 pip requests && \
+RUN conda create --yes -p /opt/test-env pytest pandas sqlalchemy psycopg2 shapely netcdf4 pip requests gitpython && \
     /opt/test-env/bin/pip install latlon-utils && \
     conda clean --yes --all
 
