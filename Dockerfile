@@ -37,3 +37,9 @@ RUN conda install -y psycopg2 sqlalchemy pandas pytest ipython openpyxl xlrd
 RUN cat /root/.bashrc >> /etc/bash.bashrc
 
 COPY ./start_pg_server.sh /usr/local/bin/start_pg_server
+
+# download tini
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/local/bin/tini
+RUN chmod +x /usr/local/bin/tini
+
+ENTRYPOINT ["tini", "--"]
