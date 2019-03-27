@@ -39,6 +39,7 @@ RUN cat /root/.bashrc >> /etc/bash.bashrc
 COPY ./start_pg_server.sh /usr/local/bin/start_pg_server
 
 # download tini
+ENV TINI_VERSION v0.18.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/local/bin/tini
 RUN chmod +x /usr/local/bin/tini
 
