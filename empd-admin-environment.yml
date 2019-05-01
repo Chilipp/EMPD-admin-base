@@ -1,0 +1,26 @@
+name: empd-admin
+channels:
+    - conda-forge
+
+dependencies:
+    - python=3.7
+    - tornado
+    - git
+    - gitpython
+    - pytest
+    - pandas
+    - sqlalchemy
+    - psycopg2
+    - shapely
+    - netcdf4
+    - pip
+    - requests
+    - gitpython
+    - geopandas
+    - ipython
+    - openpyxl
+    - xlrd
+    - pygithub
+    - pyyaml
+    - pip:
+        - latlon-utils

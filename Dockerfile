@@ -2,7 +2,7 @@ FROM postgres:11.2
 
 ENV LATLONDATA /opt/latlon-utils-data
 ENV LATLONRES 5m
-ENV PYTEST /opt/test-env/bin/pytest
+ENV PYTEST /opt/conda/envs/empd-admin/bin/pytest
 ENV PATH /opt/conda/bin:$PATH
 ENV DATABASE_URL postgresql://postgres@localhost
 
@@ -20,9 +20,10 @@ RUN wget --quiet https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86
     conda clean -tipsy && \
     conda init bash
 
-# Install dependencies
-RUN conda create --yes -p /opt/test-env pytest pandas sqlalchemy psycopg2 shapely netcdf4 pip requests gitpython geopandas && \
-    /opt/test-env/bin/pip install latlon-utils && \
+# Install dependencies for the empd-admin
+COPY empd-admin-environment.yml /tmp/empd-admin-environment.yml
+
+RUN conda env create -f /tmp/empd-admin-environment.yml && \
     conda clean --yes --all
 
 # Install the dependencies to download WorldClim into a separate environment
@@ -31,8 +32,6 @@ RUN conda create -y -p ./wc xarray dask rasterio netCDF4 pip && \
     ./wc/bin/python -m latlon_utils.download -v tavg prec -lat 0 90 -res 5m && \
     conda env remove -y -p ./wc && \
     conda clean --yes --all
-
-RUN conda install -y psycopg2 sqlalchemy pandas pytest ipython openpyxl xlrd
 
 RUN cat /root/.bashrc >> /etc/bash.bashrc
 
